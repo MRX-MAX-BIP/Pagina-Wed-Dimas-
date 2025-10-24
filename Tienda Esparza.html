@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telas Y Pasamaneria Esparza</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fce9d8;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #9e1111, #9e1111);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #e8b89d;
+      position: relative; 
+    }
+    .logo {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      width: 111px;
+      height: 111px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .horario {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #ffe2d0;
+      font-weight: 500;
+    }
+    .horario::before {
+      content: "⏰ ";
+    }
+    @media (max-width: 600px) {
+      .logo {
+        width: 45px;   
+        height: 45px;
+        top: 7px;
+        right: 5px;
+      }
+      .menu-toggle {
+        padding: 6px;
+        top: 6px;
+        left: 4px;
+      }
+      .menu-toggle span {
+        width: 15px;
+        height: 2px;
+        margin: 3px 0;
+      }
+      header h1 {
+        font-size: 1.3rem;
+      }
+      header p {
+        font-size: 0.95rem;
+      }
+      .horario {
+        font-size: 0.85rem;
+      }
+    }
+    .menu-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+    .menu-toggle:hover { transform: scale(1.1); }
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #9e1111;
+      margin: 5px 0;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 250px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+      padding: 2rem 1rem;
+      transition: left 0.4s ease;
+      z-index: 999;
+    }
+    .side-menu.open { left: 0; }
+    .side-menu h3 {
+      color: #9e1111;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .side-menu ul {
+      list-style: none;
+    }
+    .side-menu li {
+      margin: 10px 0;
+    }
+    .side-menu a {
+      text-decoration: none;
+      color: #a55325;
+      font-weight: bold;
+      display: block;
+      padding: 8px 10px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .side-menu a:hover {
+      background: #f0d5c2;
+    }
+    nav {
+      background: #fff8f1;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav a {
+      text-decoration: none;
+      color: #a55325;
+      font-weight: bold;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #a55325;
+      left: 0;
+      bottom: -4px;
+      transition: width 0.3s ease;
+    }
+    nav a:hover {
+      transform: scale(1.1);
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    section {
+      padding: 2rem 10%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h2 {
+      color: #000000;
+      margin-bottom: 1rem;
+    }
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .galeria img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer; /* indicar que es clicable */
+    }
+    .galeria img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #b01613;
+      color: #fff;
+      margin-top: 2rem;
+    }
+    .social-bar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      text-decoration: none;
+      background: #111;
+      color: white;
+      transition: transform .12s ease, box-shadow .12s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,.12);
+    }
+    .social-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0,0,0,.18);
+    }
+    .whatsapp { background: #25D366; color: #053b22; }
+    .facebook { background: #1877F2; }
+    .instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#515bd4); }
+    .gmail { background: #EA4335; }
+    .maps { background: linear-gradient(45deg, #34A853, #00C853); color: white; }
+    .social-link svg { width: 20px; height: 20px; display:block; }
+    .social-text {
+      margin-left: 8px;
+      font-size: 14px;
+      display: none;
+    }
+    @media (min-width:520px) {
+      .social-link { width: auto; padding: 6px 10px; }
+      .social-text { display: inline; }
+    }
+.whatsapp-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.whatsapp-float {
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+.whatsapp-message {
+  margin-top: 6px;
+  background-color: #ffffff;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+    .image-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: rgba(0,0,0,0.8);
+      touch-action: none;
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+      transition: transform 0.25s ease;
+      cursor: zoom-in;
+      user-select: none;
+      touch-action: none;
+    }
+    .close-modal {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 3000;
+      transition: color 0.3s ease;
+    }
+    .close-modal:hover {
+      color: #ffbbbb;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+        <!-- Botón menú -->
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <img src="https://i.imgur.com/p2sOLXj.jpeg" alt="Logo de Pasamanería Dimas" class="logo" />
+    <h1>Telas Y Pasamaneria Esparza</h1>
+    <p>Tu espacio creativo en cada puntada</p>
+    <p class="horario">Horario: Lunes a Sábado de 9:00 a.m. a 6:00 p.m.</p>
+  </header>
+    <div id="imageModal" class="image-modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImage" alt="Imagen ampliada">
+  </div>
+  <div class="side-menu" id="sideMenu">
+    <h3>Tiendas</h3>
+    <ul>
+       <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Telas%20y%20Pasamaner%C3%ADa%20P%C3%A1gina%20Principal.html">- Inicio </a></li>
+      <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Guapiles.html">- Guápiles</a></li>
+      <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Limon.html">- Limon</a></li>
+      <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Qu%C3%A9pos.html">- Quepos</a></li>
+      <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Adriana.html">- Liberia</a></li>
+      <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Turrialba.html">- Turrialba</a></li>
+      <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Turrialba.html">- San Vito</a></li>
+      <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Novedades%20Casan.html">- Puerto Viejo</a></li>
+      <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Esparza.html">- Esparza</a></li>
+      <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Santa%20Cruz.html">- Santa Cruz</a></li>
+      <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Ca%C3%B1as.html">- Cañas</a></li>
+      <li><a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Ciudad%20Neily.html">- Ciudad Neily</a></li>
+    </ul>
+  </div>
+
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#galeria">Galería</a>
+    <a href="#direccion">Ubícanos</a>
+    <a href="#contacto">Redes Sociales</a>
+  </nav>
+  <section id="servicios">
+    <h2>Servicios</h2>
+    <p>Aquí encontrarás todo lo que necesites para llevar al límite tu creatividad, creando los 
+    mejores detalles para tus seres queridos o tus emprendimientos personales, además,
+    ofrecemos la mejor calidad en todos nuestros servicios.</p>
+  </section>
+  <section id="galeria">
+    <h2>Tienda Esparza:</h2>
+    <div class="galeria">
+      <img src="https://i.imgur.com/wW4iPeL.jpeg" alt="telas." />
+      <img src="https://i.imgur.com/bUBsJvr.jpeg" alt="telas." />
+      <img src="https://i.imgur.com/fLbQLdJ.jpeg" alt="telas." />
+      <img src="https://i.imgur.com/X29wDlS.jpeg" alt="telas." />
+      <img src="https://i.imgur.com/kculoHz.jpeg" alt="lana." />
+    </div>
+          </section>
+
+  <section id="direccion">
+    <h2>Sucursal Esparza</h2>
+    <p>50M norte del Banco Nacional</p>
+    <div class="galeria">
+      <img src="https://i.imgur.com/66q8WuD.jpeg" alt="sucursal" />
+    </div>
+  </section>
+
+<center>
+  <section id="contacto">
+    <h2>Redes Sociales</h2>
+  </section>
+</center>
+
+  <nav class="social-bar" aria-label="Redes y contacto">
+    <!-- WhatsApp -->
+    <a class="social-link whatsapp" href="https://wa.me/50688593286" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.88 11.88 0 0012 .1C6.05.1 1.12 4.77 1.02 10.6c-.05 2.05.53 4.06 1.66 5.86L0 24l7.98-2.08a11.7 11.7 0 004.02.73c5.94 0 10.87-4.67 10.97-10.5.07-1.94-.41-3.79-1.45-5.07zM12 21.6c-1.2 0-2.38-.22-3.5-.64l-.25-.1-4.74 1.24 1.27-3.7-.15-.26A8.9 8.9 0 013.1 10.6c0-4.9 4.13-8.9 9.2-8.9 2.46 0 4.77.96 6.52 2.7a8.74 8.74 0 012.71 6.2c-.1 4.93-4.23 8.9-9.23 8.9z"/></svg>
+      <span class="social-text">WhatsApp</span>
+    </a>
+    <!-- Facebook -->
+      <a class="social-link facebook" href="https://www.facebook.com/profile.php?id=61565938153835" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.07C22 6.51 17.52 2 12 2S2 6.51 2 12.07c0 4.99 3.66 9.13 8.44 9.93v-7.03H8.9v-2.9h1.54V9.7c0-1.52.9-2.36 2.28-2.36.66 0 1.35.12 1.35.12v1.5h-.77c-.76 0-1 .47-1 0v1.17h1.72l-.28 2.9h-1.44v7.03C18.34 21.2 22 17.06 22 12.07z"/></svg>
+      <span class="social-text">Facebook</span>
+    </a>
+    <!-- Instagram -->
+    <a class="social-link instagram" href="https://www.instagram.com/pasamaneriadimas?igsh=eGdjZTM1dTBvdXhh" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 8.4A3.6 3.6 0 1015.6 12 3.6 3.6 0 0012 8.4zm0 5.9A2.3 2.3 0 1114.3 12 2.3 2.3 0 0112 14.3z"/><path d="M17.9 2H6.1A4.1 4.1 0 002 6.1v11.8A4.1 4.1 0 006.1 22h11.8A4.1 4.1 0 0022 17.9V6.1A4.1 4.1 0 0017.9 2zm2.1 15.9a2.1 2.1 0 01-2.1 2.1H6.1a2.1 2.1 0 01-2.1-2.1V6.1A2.1 2.1 0 016.1 4h11.8a2.1 2.1 0 012.1 2.1zM18.5 6.4a.9.9 0 11-.9-.9.9.9 0 01.9.9z"/></svg>
+      <span class="social-text">Instagram</span>
+    </a>
+    <!-- Google Maps -->
+    <a class="social-link maps" href="https://maps.app.goo.gl/ " target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5A2.5 2.5 0 119 9a2.5 2.5 0 013 2.5z"/>
+      </svg>
+      <span class="social-text">Google Maps</span>
+    </a>
+  </nav>
+<!-- Botón flotante de WhatsApp con mensaje -->
+<div class="whatsapp-container">
+  <a href="https://wa.me/50688593286" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp">
+  </a>
+  <div class="whatsapp-message">¡Pedidos Aquí!</div>
+</div>
+
+  <footer>
+    <p>&copy; 2025 Telas Y Pasamaneria Esparza. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    const secciones = document.querySelectorAll('section');
+    const mostrarSecciones = () => {
+      secciones.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+          sec.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', mostrarSecciones);
+    window.addEventListener('load', mostrarSecciones);
+    const menuToggle = document.getElementById('menuToggle');
+    const sideMenu = document.getElementById('sideMenu');
+    menuToggle.addEventListener('click', () => {
+      sideMenu.classList.toggle('open');
+    });
+        const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    const closeModal = document.querySelector(".close-modal");
+    document.querySelectorAll(".galeria img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+        resetZoom();
+      });
+    });
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+    let zoomed = false;
+    modalImg.addEventListener("click", (e) => {
+      e.stopPropagation();
+      zoomed = !zoomed;
+      modalImg.style.transform = zoomed ? "scale(2.5)" : "scale(1)";
+      modalImg.style.cursor = zoomed ? "zoom-out" : "zoom-in";
+    });
+    let initialDistance = null;
+    let currentScale = 1;
+    modalImg.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        initialDistance = getDistance(e.touches[0], e.touches[1]);
+      }
+    }, { passive: false });
+    modalImg.addEventListener("touchmove", (e) => {
+      if (e.touches.length === 2 && initialDistance) {
+        e.preventDefault();
+        const newDistance = getDistance(e.touches[0], e.touches[1]);
+        const scaleChange = newDistance / initialDistance;
+        let newScale = currentScale * scaleChange;
+        // Limitar entre 1x y 4x
+        newScale = Math.min(Math.max(newScale, 1), 4);
+        modalImg.style.transform = `scale(${newScale})`;
+      }
+    }, { passive: false });
+    modalImg.addEventListener("touchend", (e) => {
+      if (e.touches.length < 2) {
+        currentScale = getCurrentScale(modalImg);
+        initialDistance = null;
+      }
+    });
+    function getDistance(t1, t2) {
+      const dx = t2.clientX - t1.clientX;
+      const dy = t2.clientY - t1.clientY;
+      return Math.hypot(dx, dy);
+    }
+    function getCurrentScale(el) {
+      const style = window.getComputedStyle(el);
+      const transform = style.transform || style.webkitTransform;
+      if (transform && transform !== 'none') {
+        const match = transform.match(/matrix\(\s*([^\s,]+)/);
+        if (match) {
+          return parseFloat(match[1]);
+        }
+      }
+      return 1;
+    }
+    function resetZoom() {
+      zoomed = false;
+      currentScale = 1;
+      modalImg.style.transform = "scale(1)";
+      modalImg.style.cursor = "zoom-in";
+    }
+      </script>
+</body>
+</html>

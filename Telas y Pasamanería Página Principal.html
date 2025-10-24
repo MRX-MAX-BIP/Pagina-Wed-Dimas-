@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telas y Pasamanerías</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background-color: #fce9d8;
+      color: #333;
+    }
+
+    header {
+      background-color: #9c2a2a;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 {
+      font-size: 2em;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      background-color: #8a2c2c;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 15px 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #a43a3a;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    .contenedor {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .titulo-seccion {
+      text-align: center;
+      font-size: 2em;
+      color: #6b1b1b;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .tarjeta {
+      background: rgb(#eda074);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Imagen centrada y del mismo tamaño en todas las tarjetas */
+    .tarjeta .img-wrapper {
+      height: 180px; /* Ajusta este valor si querés imágenes más altas o más bajas */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-color: #fce9d8; 
+    }
+
+    .tarjeta .img-wrapper img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .tarjeta .contenido {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .tarjeta h3 {
+      color: #6b1b1b;
+      margin-bottom: 10px;
+    }
+     
+    .logo {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      width: 111px;
+      height: 111px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .tarjeta p {
+      font-size: 0.95em;
+      color: #555;
+    }
+
+    footer {
+      background-color: #6b1b1b;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    footer p {
+      font-size: 0.9em;
+    }
+   /* ==== SEPARADOR ==== */
+.separador {
+  border: none;
+  height: 3px;
+  background-color: #9c2a2a;
+  margin: 60px 0; /* espacio arriba y abajo */
+  width: 80%; 
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==== SECCIÓN MISIÓN Y VISIÓN ==== */
+.mision-vision {
+  background: linear-gradient(135deg, #f7d5b5 0%, #fce9d8 100%);
+  padding: 60px 20px;
+  border-top: 5px solid #9c2a2a;
+}
+
+.mv-contenedor {
+  display: flex;
+  flex-wrap: nowrap; /* evita que se apilen */
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.mv-imagen {
+  flex: 1; /* ocupa un lado */
+  display: flex;
+  justify-content: center;
+}
+
+.mv-imagen img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  transition: transform 0.5s ease;
+}
+
+.mv-imagen img:hover {
+  transform: scale(1.05);
+}
+
+.mv-texto {
+  flex: 1; /* ocupa el otro lado */
+  color: #4a1d1d;
+}
+
+.mv-bloque {
+  margin-bottom: 40px;
+}
+
+.mv-texto h2 {
+  font-size: 2em;
+  color: #9c2a2a;
+  margin-bottom: 10px;
+  border-left: 6px solid #9c2a2a;
+  padding-left: 10px;
+}
+
+.mv-texto hr {
+  border: none;
+  height: 2px;
+  background-color: #9c2a2a;
+  width: 60px;
+  margin: 10px 0 20px 0;
+}
+
+.mv-texto p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .mv-contenedor {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .mv-imagen {
+    margin-bottom: 30px;
+  }
+
+  .mv-texto h2 {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .mv-texto hr {
+    margin: 10px auto 20px auto;
+    width: 50px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Telas y Pasamanería</h1>
+  </header>
+
+  <section class="hero"></section>
+
+  <div class="contenedor"> 
+    <h2 class="titulo-seccion">Nuestras Sucursales</h2>
+    <div class="grid">
+
+      <div class="tarjeta">
+        <a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Guapiles.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="img-wrapper">
+            <img src="https://i.imgur.com/cepwevC.jpeg" alt="guapiles">
+          </div>
+        </a>
+        <div class="contenido">
+          <h3>Pasamanería Dimas Guápiles</h3>
+          <p>WhatsApp: +506 8733-3500</p>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Limon.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="img-wrapper">
+            <img src="https://i.imgur.com/sWzdumO.jpeg" alt="limon">
+          </div>
+        </a>
+        <div class="contenido">
+          <h3>Telas y Pasamanería Limón</h3>
+          <p>WhatsApp: +506 8858-2840</p>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Qu%C3%A9pos.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="img-wrapper">
+            <img src="https://i.imgur.com/zcVOKue.jpeg" alt="quepos">
+          </div>
+        </a>
+        <div class="contenido">
+          <h3>Pasamanería Dimas Quepos</h3>
+          <p>WhatsApp: +506 8757-8830</p>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Adriana.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="img-wrapper">
+            <img src="https://i.imgur.com/TkHKatW.jpeg" alt="Adriana">
+          </div>
+        </a>
+        <div class="contenido">
+          <h3>Telas y Pasamanería Adriana</h3>
+          <p>WhatsApp: +506 8333-6509</p>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Turrialba.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="img-wrapper">
+            <img src="https://i.imgur.com/MT20ZPf.jpeg" alt="turrialba">
+          </div>
+        </a>
+        <div class="contenido">
+          <h3>Telas y Pasamanería Turrialba</h3>
+          <p>WhatsApp: +506 8557-9400</p>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Novedades%20Casan.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="img-wrapper">
+            <img src="https://i.imgur.com/QKm9jxL.png" alt="casan">
+          </div>
+        </a>
+        <div class="contenido">
+          <h3>Novedades Casan</h3>
+          <p>WhatsApp: +506 8802-6980</p>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Puerto%20Viejo.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="img-wrapper">
+            <img src="https://i.imgur.com/OlB4pJZ.jpeg" alt="puerto viejo">
+          </div>
+        </a>
+        <div class="contenido">
+          <h3>Pasamanería Puerto Viejo</h3>
+          <p>WhatsApp: +506 8609-7032</p>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Esparza.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="img-wrapper">
+            <img src="https://i.imgur.com/LCZHUc4.jpeg" alt="esparza">
+          </div>
+        </a>
+        <div class="contenido">
+          <h3>Telas y Pasamanería Esparza</h3>
+          <p>WhatsApp: +506 8859-3286</p>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Santa%20Cruz.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="img-wrapper">
+            <img src="https://i.imgur.com/10ApPYA.jpeg" alt="santa cruz">
+          </div>
+        </a>
+        <div class="contenido">
+          <h3>Telas y Pasamanería Santa Cruz</h3>
+          <p>WhatsApp: +506 8842-4524</p>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Ca%C3%B1as.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="img-wrapper">
+            <img src="https://i.imgur.com/TPTXjpx.png" alt="cañas">
+          </div>
+        </a>
+        <div class="contenido">
+          <h3>Telas y Pasamanería Cañas</h3>
+          <p>WhatsApp: +506 8671-8990</p>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <a href="file:///D:/P%C3%A1gina%20pasamaneria%20Dimas%20Original%20-%20copia/Tienda%20Ciudad%20Neily.html" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="img-wrapper">
+            <img src="https://i.imgur.com/1jINrGf.jpeg" alt="ciudad neily">
+          </div>
+        </a>
+        <div class="contenido">
+          <h3>Pasamanería Ciudad Neily</h3>
+          <p> Numero Fijo:+506 2783 3132</p>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+<section class="mision-vision">
+    <!-- Imagen -->
+    <div class="mv-imagen">
+      
+    </div>
+
+   <div class="mv-contenedor">
+  <div class="mv-imagen">
+    <img src="https://i.imgur.com/l8VPbPr.png" alt="Imagen representativa">
+  </div>
+  <div class="mv-texto">
+    <div class="mv-bloque">
+      <h2>MISIÓN</h2>
+      <hr>
+      <p>Ser una fuente constante de inspiración para quienes buscan dar vida a sus ideas, proporcionando materiales que combinan funcionalidad y estética. Ofreciendo una amplia gama de productos de pasamanería con diseños innovadores, materiales de alta calidad y brindar un excelente servicio al cliente. Apoyando la creatividad y promoviendo la tradición mediante el diseño artesanal, decoración, confección y personalización.</p>
+    </div>
+    <div class="mv-bloque">
+      <h2>VISIÓN</h2>
+      <hr>
+      <p>Ser un referente líder en el mercado de pasamanería, reconocida por la calidad, variedad y exclusividad de nuestros productos. Transformando espacios y proyectos con productos que destaquen por su belleza calidad y estilo. Innovando constantemente en el mundo de la pasamaneria para convertirnos en los aliados principales de los artistas, inspirándolos en sus proyectos. </p>
+
+
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+  
+</section>
+
+
+
+<footer>
+  <p>© 2025 Telas y Pasamanería | Todos los derechos reservados</p>
+</footer>
+
+  <script>
+    // Detección del sistema operativo para ajustes automáticos
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.includes('android')) {
+      document.body.style.fontSize = "16px";
+    } else if (userAgent.includes('iphone') || userAgent.includes('ipad')) {
+      document.body.style.fontSize = "17px";
+    } else if (userAgent.includes('win')) {
+      document.body.style.fontSize = "15px";
+    } else if (userAgent.includes('linux')) {
+      document.body.style.fontSize = "15px";
+    } else {
+      document.body.style.fontSize = "16px";
+    }
+  </script>
+
+</body>
+</html>
